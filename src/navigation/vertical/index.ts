@@ -11,4 +11,9 @@ export default [
     to: { name: 'file-input' },
     icon: { icon: 'tabler-file' },
   },
+  {
+    title: 'Data Table',
+    to: { name: 'data-table' },
+    icon: { icon: 'tabler-table' },
+  },
 ] as VerticalNavItems
