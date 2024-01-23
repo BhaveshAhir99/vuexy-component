@@ -12,6 +12,11 @@ export default [
     icon: { icon: 'tabler-file' },
   },
   {
+    title: 'Vue3 Dropzone',
+    to: { name: 'vue3-dropzone' },
+    icon: { icon: 'tabler-file' },
+  },
+  {
     title: 'Data Table',
     to: { name: 'data-table' },
     icon: { icon: 'tabler-table' },

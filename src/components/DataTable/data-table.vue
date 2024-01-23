@@ -17,5 +17,6 @@ const headers = [
     :headers="headers"
     :items="data"
     :items-per-page="5"
+    :resizable="true"
   />
 </template>
