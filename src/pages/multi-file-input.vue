@@ -7,6 +7,6 @@
 
 <script setup>
 
-import FileInput from '@/components/FileInput/file-inpute.vue';
+import FileInput from '@/components/FileInput/multi-file-inpute.vue';
 
 </script>

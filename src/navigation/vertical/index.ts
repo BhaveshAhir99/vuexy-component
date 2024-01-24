@@ -7,18 +7,28 @@ export default [
     icon: { icon: 'tabler-smart-home' },
   },
   {
-    title: 'File Input',
-    to: { name: 'file-input' },
+    title: 'Single File Input',
+    to: { name: 'single-file-input' },
     icon: { icon: 'tabler-file' },
   },
   {
-    title: 'Vue3 Dropzone',
-    to: { name: 'vue3-dropzone' },
+    title: 'Multiple File Input',
+    to: { name: 'multi-file-input' },
     icon: { icon: 'tabler-file' },
   },
   {
-    title: 'Data Table',
-    to: { name: 'data-table' },
+    title: 'Dropzone File Input',
+    to: { name: 'dropzone-file-input' },
+    icon: { icon: 'tabler-file' },
+  },
+  {
+    title: 'Simple Data Table',
+    to: { name: 'simple-data-table' },
+    icon: { icon: 'tabler-table' },
+  },
+  {
+    title: 'Resizable Data Table',
+    to: { name: 'resizable-data-table' },
     icon: { icon: 'tabler-table' },
   },
 ] as VerticalNavItems

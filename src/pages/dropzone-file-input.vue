@@ -7,6 +7,6 @@
 
 <script setup>
 
-import Dropzone from '@/components/Dropzone/vue3-dropzone.vue';
+import Dropzone from '@/components/FileInput/dropzone-file-input.vue';
 
 </script>
