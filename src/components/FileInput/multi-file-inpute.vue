@@ -1,8 +1,54 @@
+<script setup lang="ts">
+
+// Interface
+interface Props {
+  multipleFile?: boolean,
+}
+
+interface Emit {
+  (e: 'addFileInput', value: any): void
+  (e: 'deleteFile', value: any): void
+}
+
+// Props
+const props = withDefaults(defineProps<Props>(), {
+  multipleFile: true,
+
+})
+
+// Emits
+const emit = defineEmits<Emit>()
+
+  const files = ref([]);
+  const imagePreviews = ref([]);
+
+  const handleFileChange = () => {
+    // imagePreviews.value = [];
+    files.value.forEach((file) => {
+      console.log(file)
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imagePreviews.value.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
+    emit('addFileInput', imagePreviews.value)
+  };
+
+  const deleteFile = (index: any) => {
+    // Remove the file from the files array
+    files.value.splice(index, 1);
+    // Remove the corresponding preview
+    imagePreviews.value.splice(index, 1);
+    emit('deleteFile',imagePreviews.value )
+  };
+
+</script>
 <template>
     <div>
       <VFileInput
         v-model="files"
-        multiple
+        :multiple="props.multipleFile"
         label="File input"
         @change="handleFileChange"
       />
@@ -16,43 +62,15 @@
       </div>
     </div>
   </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  
-  const files = ref([]);
-  const imagePreviews = ref([]);
-  
-  const handleFileChange = () => {
-    // imagePreviews.value = [];
-    files.value.forEach((file) => {
-      console.log(file)
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        imagePreviews.value.push(e.target.result);
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-  
-  const deleteFile = (index) => {
-    // Remove the file from the files array
-    files.value.splice(index, 1);
-    // Remove the corresponding preview
-    imagePreviews.value.splice(index, 1);
-  };
-  
-  </script>
-  
-  
-  <style scoped>
+
+  <style>
   .imageAligment{
     display: flex;
     flex-wrap: wrap;
   }
   .image-preview {
-    width: 100px; 
-    height: 100px; 
+    width: 100px;
+    height: 100px;
     margin: 10px;
   }
   .trash-button{
@@ -66,6 +84,5 @@
     border: none;
     padding-left: 40px;
   }
-  
+
   </style>
-  
