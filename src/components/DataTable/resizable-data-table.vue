@@ -1,11 +1,8 @@
 
 <script setup lang="ts">
 import { VDataTable } from 'vuetify/labs/VDataTable';
-// import flatPickr from 'vue-flatpickr-component';
-// import 'flatpickr/dist/flatpickr.css';
-// import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect/index.js'
-// import 'flatpickr/dist/plugins/monthSelect/style.css'
 
+// Interface
 interface Props {
   headers?: any[],
   items?: any[],
@@ -13,33 +10,19 @@ interface Props {
 }
 
 
+interface Emit {
+  (e: 'editItem', value: any): void
+  (e: 'deleteItem', value: any): void
+}
+
 // Props
 const props = withDefaults(defineProps<Props>(), {
   resizeTable: 'resize'
 })
 
-// Date picker temporary code
-// const date = ref()
+// Emits
+const emit = defineEmits<Emit>()
 
-// const configs = reactive({
-//   monthSelect: {
-//     dateFormat: 'MM',
-//     altInput: true,
-//     altFormat: 'd/MM/Y',
-//     allowInput: true,
-//     wrap: true,
-//     mode: 'range',
-//         locale: {
-//         rangeSeparator: ' - ',
-//         },
-//     plugins: [
-//       new monthSelectPlugin({
-//         shorthand: true,
-//         dateFormat: "MM",
-//       })
-//     ]
-//   }
-// })
 
 //  method
 const makeColumnsResizable = () => {
@@ -135,8 +118,6 @@ const resizableGrid = (table: any)=>{
     return (window.getComputedStyle(elm, null).getPropertyValue(css))
   }
 }
-
-
 // hook
 onMounted(() => {
     makeColumnsResizable()
@@ -144,22 +125,25 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- <div>
-    <flat-pickr
-      v-model="date"
-      :config="configs.monthSelect"
-      class="form-control"
-      placeholder="Select date"
-      name="date"
-    />
-  </div> -->
   <div>
     <v-data-table
     :headers="props.headers"
     :items="props.items"
     :item-key="itemKey"
     :class="props.resizeTable=== 'resize'? 'resize-table': ''"
-    ></v-data-table>
+    >
+     <!-- Actions -->
+     <template #item.actions="{ item }">
+      <div class="d-flex gap-1">
+        <IconBtn @click="emit('editItem',item.raw)">
+          <VIcon icon="tabler-edit" />
+        </IconBtn>
+        <IconBtn @click="emit('deleteItem',item.raw)">
+          <VIcon icon="tabler-trash" />
+        </IconBtn>
+      </div>
+    </template>
+  </v-data-table>
   </div>
 
 </template>

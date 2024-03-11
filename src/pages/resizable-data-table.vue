@@ -1,7 +1,7 @@
 
 <template>
     <div id="app">
-      <ResizableDataTable :headers="headers" :items="items" :resizeTable="'resize'" />
+      <ResizableDataTable :headers="headers" :items="items" :resizeTable="'resize'" @editItem="editItem" />
     </div>
   </template>
 
@@ -16,7 +16,7 @@
   { title: 'Carbs (g)', sortable: false, value: 'carbs' },
   { title: 'Protein (g)', sortable: false, value: 'protein' },
   { title: 'Iron (%)', sortable: false, value: 'iron' },
-  { title: 'jay (%)', sortable: false, value: 'jay' },
+  {  title: 'ACTIONS', key: 'actions' },
     ])
 
     const items = ref<any[]>([
@@ -107,4 +107,7 @@
   },
 ])
 
+  const editItem = (data:any) => {
+    console.log('data: ', data);
+}
   </script>
